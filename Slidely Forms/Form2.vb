@@ -1,10 +1,12 @@
 ﻿Imports System.Net.Http
+Imports System.Text
 Imports Newtonsoft.Json
 Public Class Form2
 
     Private currentIndex As Integer = 0
     Private totalSubmissions As Integer = 0
-    Private submissions As List(Of Submission)
+    Private currentSubmission As Submission
+    Private isEditing As Boolean = False
 
     ' Form constructor
     Public Sub New()
@@ -41,6 +43,11 @@ Public Class Form2
             ' Call the button click event handler
             btnEdit.PerformClick()
         End If
+
+        If e.Control AndAlso e.KeyCode = Keys.S Then
+            ' Call the button click event handler
+            btnSave.PerformClick()
+        End If
     End Sub
 
     Private Async Sub ViewSubmissionsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -54,6 +61,7 @@ Public Class Form2
         Using client As New HttpClient()
             Dim response = Await client.GetStringAsync("http://localhost:3000/read?index=" & index)
             Dim submission = JsonConvert.DeserializeObject(Of Submission)(response)
+            currentSubmission = submission
             DisplaySubmission(submission)
         End Using
     End Function
@@ -103,12 +111,19 @@ Public Class Form2
         End Using
     End Function
 
-    Private Sub DisplaySubmission(submission As Submission)
+    Private Sub DisplaySubmission(submission As Submission, Optional enableEditing As Boolean = False)
         nameText.Text = submission.name
         emailText.Text = submission.email
         phoneText.Text = submission.phone
         githubText.Text = submission.github_link
         timeText.Text = submission.stopwatch_time
+
+        ' Enable or disable editing
+        nameText.ReadOnly = Not enableEditing
+        emailText.ReadOnly = Not enableEditing
+        phoneText.ReadOnly = Not enableEditing
+        githubText.ReadOnly = Not enableEditing
+        timeText.ReadOnly = Not enableEditing
     End Sub
 
     ' Button click event handler
@@ -131,7 +146,47 @@ Public Class Form2
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        MessageBox.Show("Edit")
+        If Not isEditing Then
+            ' Enable editing
+            DisplaySubmission(currentSubmission, True)
+            btnSave.Enabled = True
+            btnEdit.Text = "Cancel (CTRL + E)"
+            isEditing = True
+        Else
+            ' Cancel editing
+            DisplaySubmission(currentSubmission, False)
+            btnSave.Enabled = False
+            btnEdit.Text = "Edit (CTRL + E)"
+            isEditing = False
+        End If
+    End Sub
+
+
+    Private Async Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        ' Save the edited submission
+        Dim editedSubmission As New Submission With {
+            .name = nameText.Text,
+            .email = emailText.Text,
+            .phone = phoneText.Text,
+            .github_link = githubText.Text,
+            .stopwatch_time = timeText.Text
+        }
+
+        Using client As New HttpClient()
+            Dim json = JsonConvert.SerializeObject(editedSubmission)
+            Dim content = New StringContent(json, Encoding.UTF8, "application/json")
+            Dim response = Await client.PutAsync("http://localhost:3000/edit?index=" & currentIndex, content)
+            If response.IsSuccessStatusCode Then
+                MessageBox.Show("Submission updated successfully.")
+                currentSubmission = editedSubmission
+                DisplaySubmission(currentSubmission, False)
+                btnSave.Enabled = False
+                btnEdit.Text = "Edit (CTRL + E)"
+                isEditing = False
+            Else
+                MessageBox.Show("Failed to update the submission.")
+            End If
+        End Using
     End Sub
 
 

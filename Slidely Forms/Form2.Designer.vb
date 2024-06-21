@@ -36,6 +36,7 @@ Partial Class Form2
         btnNext = New Button()
         btnDelete = New Button()
         btnEdit = New Button()
+        btnSave = New Button()
         SuspendLayout()
         ' 
         ' nameField
@@ -159,11 +160,22 @@ Partial Class Form2
         btnEdit.Text = "Edit Submission (CTRL+E)"
         btnEdit.UseVisualStyleBackColor = True
         ' 
+        ' btnSave
+        ' 
+        btnSave.Enabled = False
+        btnSave.Location = New Point(536, 546)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(196, 29)
+        btnSave.TabIndex = 14
+        btnSave.Text = "Save (CTRL+S)"
+        btnSave.UseVisualStyleBackColor = True
+        ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1233, 638)
+        Controls.Add(btnSave)
         Controls.Add(btnEdit)
         Controls.Add(btnDelete)
         Controls.Add(btnNext)
@@ -198,4 +210,5 @@ Partial Class Form2
     Friend WithEvents btnNext As Button
     Friend WithEvents btnDelete As Button
     Friend WithEvents btnEdit As Button
+    Friend WithEvents btnSave As Button
 End Class
