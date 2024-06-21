@@ -1,6 +1,7 @@
 ﻿Imports System.Diagnostics
 Imports System.Net.Http
 Imports System.Text
+Imports System.Text.RegularExpressions
 Imports Newtonsoft.Json
 
 Public Class Form3
@@ -49,6 +50,18 @@ Public Class Form3
         isStopwatchRunning = Not isStopwatchRunning
     End Sub
 
+    ' Email validation function
+    Private Function IsValidEmail(email As String) As Boolean
+        Dim emailPattern As String = "^[^@\s]+@[^@\s]+\.[^@\s]+$"
+        Return Regex.IsMatch(email, emailPattern)
+    End Function
+
+    ' Phone number validation function
+    Private Function IsValidPhoneNumber(phone As String) As Boolean
+        Dim phonePattern As String = "^[789]\d{9}$"
+        Return Regex.IsMatch(phone, phonePattern)
+    End Function
+
     Private Async Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Dim submission = New With {
             .name = nameInput.Text,
@@ -57,6 +70,18 @@ Public Class Form3
             .github_link = githubInput.Text,
             .stopwatch_time = timeInput.Text
         }
+
+        ' Validate email
+        If Not IsValidEmail(submission.email) Then
+            MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Validate phone number
+        If Not IsValidPhoneNumber(submission.phone) Then
+            MessageBox.Show("Please enter a valid phone number.", "Invalid Phone Number", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
         Dim json = JsonConvert.SerializeObject(submission)
         Dim data = New StringContent(json, Encoding.UTF8, "application/json")

@@ -1,5 +1,6 @@
 ﻿Imports System.Net.Http
 Imports System.Text
+Imports System.Text.RegularExpressions
 Imports Newtonsoft.Json
 Public Class Form2
 
@@ -162,6 +163,18 @@ Public Class Form2
     End Sub
 
 
+    ' Email validation function
+    Private Function IsValidEmail(email As String) As Boolean
+        Dim emailPattern As String = "^[^@\s]+@[^@\s]+\.[^@\s]+$"
+        Return Regex.IsMatch(email, emailPattern)
+    End Function
+
+    ' Phone number validation function
+    Private Function IsValidPhoneNumber(phone As String) As Boolean
+        Dim phonePattern As String = "^[789]\d{9}$"
+        Return Regex.IsMatch(phone, phonePattern)
+    End Function
+
     Private Async Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         ' Save the edited submission
         Dim editedSubmission As New Submission With {
@@ -171,6 +184,18 @@ Public Class Form2
             .github_link = githubText.Text,
             .stopwatch_time = timeText.Text
         }
+
+        ' Validate email
+        If Not IsValidEmail(editedSubmission.email) Then
+            MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Validate phone number
+        If Not IsValidPhoneNumber(editedSubmission.phone) Then
+            MessageBox.Show("Please enter a valid phone number.", "Invalid Phone Number", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
         Using client As New HttpClient()
             Dim json = JsonConvert.SerializeObject(editedSubmission)
