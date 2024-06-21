@@ -103,12 +103,13 @@ Partial Class Form3
         ' 
         ' btnStopwatch
         ' 
+        btnStopwatch.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         btnStopwatch.Location = New Point(369, 395)
         btnStopwatch.Name = "btnStopwatch"
         btnStopwatch.Size = New Size(203, 29)
         btnStopwatch.TabIndex = 8
         btnStopwatch.Text = "Toggle Stopwatch (CTRL+T)"
-        btnStopwatch.UseVisualStyleBackColor = True
+        btnStopwatch.UseVisualStyleBackColor = False
         ' 
         ' timeInput
         ' 
@@ -121,12 +122,14 @@ Partial Class Form3
         ' 
         ' btnSubmit
         ' 
+        btnSubmit.BackColor = Color.Green
+        btnSubmit.ForeColor = Color.White
         btnSubmit.Location = New Point(439, 463)
         btnSubmit.Name = "btnSubmit"
         btnSubmit.Size = New Size(351, 29)
         btnSubmit.TabIndex = 10
         btnSubmit.Text = "Submit (CTRL+S)"
-        btnSubmit.UseVisualStyleBackColor = True
+        btnSubmit.UseVisualStyleBackColor = False
         ' 
         ' Timer1
         ' 
@@ -136,6 +139,7 @@ Partial Class Form3
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.ActiveCaption
         ClientSize = New Size(1156, 665)
         Controls.Add(btnSubmit)
         Controls.Add(timeInput)

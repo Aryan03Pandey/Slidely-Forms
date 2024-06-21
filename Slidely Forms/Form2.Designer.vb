@@ -126,54 +126,60 @@ Partial Class Form2
         ' 
         ' btnPrevious
         ' 
+        btnPrevious.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         btnPrevious.Location = New Point(357, 410)
         btnPrevious.Name = "btnPrevious"
         btnPrevious.Size = New Size(258, 29)
         btnPrevious.TabIndex = 10
         btnPrevious.Text = "Previous (CTRL+P)"
-        btnPrevious.UseVisualStyleBackColor = True
+        btnPrevious.UseVisualStyleBackColor = False
         ' 
         ' btnNext
         ' 
+        btnNext.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         btnNext.Location = New Point(652, 410)
         btnNext.Name = "btnNext"
         btnNext.Size = New Size(258, 29)
         btnNext.TabIndex = 11
         btnNext.Text = "Next (CTRL+N)"
-        btnNext.UseVisualStyleBackColor = True
+        btnNext.UseVisualStyleBackColor = False
         ' 
         ' btnDelete
         ' 
+        btnDelete.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
         btnDelete.Location = New Point(357, 477)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(258, 29)
         btnDelete.TabIndex = 12
         btnDelete.Text = "Delete Submission (CTRL+D)"
-        btnDelete.UseVisualStyleBackColor = True
+        btnDelete.UseVisualStyleBackColor = False
         ' 
         ' btnEdit
         ' 
+        btnEdit.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
         btnEdit.Location = New Point(652, 477)
         btnEdit.Name = "btnEdit"
         btnEdit.Size = New Size(258, 29)
         btnEdit.TabIndex = 13
         btnEdit.Text = "Edit Submission (CTRL+E)"
-        btnEdit.UseVisualStyleBackColor = True
+        btnEdit.UseVisualStyleBackColor = False
         ' 
         ' btnSave
         ' 
+        btnSave.BackColor = Color.Yellow
         btnSave.Enabled = False
         btnSave.Location = New Point(536, 546)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(196, 29)
         btnSave.TabIndex = 14
         btnSave.Text = "Save (CTRL+S)"
-        btnSave.UseVisualStyleBackColor = True
+        btnSave.UseVisualStyleBackColor = False
         ' 
         ' Form2
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.ActiveCaption
         ClientSize = New Size(1233, 638)
         Controls.Add(btnSave)
         Controls.Add(btnEdit)

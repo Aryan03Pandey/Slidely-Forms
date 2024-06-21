@@ -28,27 +28,33 @@ Partial Class Form1
         ' 
         ' btnViewSubmissions
         ' 
+        btnViewSubmissions.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
+        btnViewSubmissions.BackgroundImageLayout = ImageLayout.None
+        btnViewSubmissions.ForeColor = SystemColors.ControlLightLight
         btnViewSubmissions.Location = New Point(377, 200)
         btnViewSubmissions.Name = "btnViewSubmissions"
         btnViewSubmissions.Size = New Size(294, 29)
         btnViewSubmissions.TabIndex = 0
         btnViewSubmissions.Text = "View Submissions (CTRL+V)"
         btnViewSubmissions.TextImageRelation = TextImageRelation.ImageAboveText
-        btnViewSubmissions.UseVisualStyleBackColor = True
+        btnViewSubmissions.UseVisualStyleBackColor = False
         ' 
         ' btnCreateSubmission
         ' 
+        btnCreateSubmission.BackColor = Color.FromArgb(CByte(192), CByte(64), CByte(0))
+        btnCreateSubmission.ForeColor = SystemColors.ButtonHighlight
         btnCreateSubmission.Location = New Point(377, 265)
         btnCreateSubmission.Name = "btnCreateSubmission"
         btnCreateSubmission.Size = New Size(294, 29)
         btnCreateSubmission.TabIndex = 1
         btnCreateSubmission.Text = "Create New Submission (CTRL+N)"
-        btnCreateSubmission.UseVisualStyleBackColor = True
+        btnCreateSubmission.UseVisualStyleBackColor = False
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = SystemColors.ActiveCaption
         ClientSize = New Size(1053, 565)
         Controls.Add(btnCreateSubmission)
         Controls.Add(btnViewSubmissions)
