@@ -2,11 +2,11 @@ Welcome to the repository for Slidely Forms, a windows application that allows u
 Built using Visual Basic which provides a beginner friendly, rapid application development environment using its Drag-and-Drop functionality and pre-built components.
 
 **Features**
-**View Submissions**: Navigate through submitted entries using "Previous" and "Next" buttons.
-**Create New Submission**: Fill in details and submit a new entry with a functional stopwatch.
-**Edit Submission**: Edit the details of existing submissions.
-**Delete Submission**: Remove entries from the list.
-**Keyboard Shortcuts**: Use keyboard shortcuts for common actions.
+* **View Submissions**: Navigate through submitted entries using "Previous" and "Next" buttons.
+* **Create New Submission**: Fill in details and submit a new entry with a functional stopwatch.
+* **Edit Submission**: Edit the details of existing submissions.
+* **Delete Submission**: Remove entries from the list.
+* **Keyboard Shortcuts**: Use keyboard shortcuts for common actions.
 
 **Steps to Clone and Run the Windows Forms App**
 
